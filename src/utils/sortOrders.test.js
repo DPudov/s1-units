@@ -106,11 +106,11 @@ describe('sortOrders function', () => {
 
 	it('sort by date', () => {
 		const order1 = {
-			date: ['2', '1']
+			date: 16
 		};
 
 		const order2 = {
-			date: ['3', '4', '1']
+			date: 14
 		};
 
 		const orders = [order2, order1];
@@ -159,7 +159,7 @@ describe('sortByDate function', () => {
 		};
 
 		const result = sortByDate(order1, order2);
-		expect(result).toEqual(1);
+		expect(result).toEqual(-1);
 	});
 
 	it('second bigger', () => {
@@ -172,7 +172,7 @@ describe('sortByDate function', () => {
 		};
 
 		const result = sortByDate(order1, order2);
-		expect(result).toEqual(-1);
+		expect(result).toEqual(1);
 	});
 	it('dates equal', () => {
 		const order1 = {
