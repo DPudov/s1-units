@@ -23,7 +23,7 @@ describe('sortByItemCount function', () => {
 		};
 
 		const result = sortByItemCount(order1, order2);
-		
+
 		expect(result).toBe(0);
 	});
 
@@ -59,7 +59,7 @@ describe('sortByItemCount function', () => {
 describe('sortOrders function', () => {
 	it('orders are null', () => {
 		const result = sortOrders(null, sortTypes.ITEM_NAMES);
-		expect(result).toBe(undefined);
+		expect(result).not.toBeTruthy();
 	})
 
 	it('orders with no type', () => {
@@ -74,7 +74,7 @@ describe('sortOrders function', () => {
 		const orders = [order1, order2];
 
 		const result = sortOrders(orders, null);
-		expect(result).toBe(undefined);
+		expect(result).not.toBeTruthy();
 
 		expect(orders).toEqual(orders);
 	});
@@ -82,7 +82,7 @@ describe('sortOrders function', () => {
 
 	it('orders are null, no type', () => {
 		const result = sortOrders(null, null);
-		expect(result).toBe(undefined);
+		expect(result).not.toBeTruthy();
 	});
 
 	it('sort by names', () => {
@@ -99,6 +99,8 @@ describe('sortOrders function', () => {
 		const valid = [order1, order2];
 
 		const result = sortOrders(orders, sortTypes.ITEM_NAMES);
+
+		expect(result).toBeTruthy();
 		expect(orders).toEqual(valid);
 	});
 
