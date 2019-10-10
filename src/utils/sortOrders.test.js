@@ -106,6 +106,25 @@ describe('sortOrders function', () => {
 
 	it('sort by date', () => {
 		const order1 = {
+			date: ['2', '1']
+		};
+
+		const order2 = {
+			date: ['3', '4', '1']
+		};
+
+		const orders = [order2, order1];
+
+		const valid = [order1, order2];
+
+		const result = sortOrders(orders, sortTypes.DATE);
+
+		expect(orders).toEqual(valid);
+		expect(result).toBeTruthy();
+	});
+
+	it('sort by count', () => {
+		const order1 = {
 			items: ['2', '1']
 		};
 
@@ -115,17 +134,56 @@ describe('sortOrders function', () => {
 
 		const orders = [order2, order1];
 
-		const valid = [
-			{
-				items: ['2', '1']
-			},
-			{
-				items: ['3', '4', '1']
-			}
-		];
+		const valid = [order1, order2];
 
-		const result = sortOrders(orders, sortTypes.DATE);
+		const result = sortOrders(orders, sortTypes.COUNT);
+
 		expect(orders).toEqual(valid);
+		expect(result).toBeTruthy();
+	});
+});
+
+describe('sortByDate function', () => {
+	it('orders are null', () => {
+		const result = sortByDate(null, null);
+		expect(result).toEqual(0);
 	});
 
+	it('first bigger', () => {
+		const order1 = {
+			date: 15
+		};
+
+		const order2 = {
+			date: 14
+		};
+
+		const result = sortByDate(order1, order2);
+		expect(result).toEqual(1);
+	});
+
+	it('second bigger', () => {
+		const order1 = {
+			date: 15
+		};
+
+		const order2 = {
+			date: 200
+		};
+
+		const result = sortByDate(order1, order2);
+		expect(result).toEqual(-1);
+	});
+	it('dates equal', () => {
+		const order1 = {
+			date: 15
+		};
+
+		const order2 = {
+			date: 15
+		};
+
+		const result = sortByDate(order1, order2);
+		expect(result).toEqual(0);
+	});
 });
